@@ -23,4 +23,4 @@ obs_lat = lineData[6]     # Observation Latitude
 obs_lon = lineData[7]     # Observation Longitude
 
 # Print information to the use
-print (f"Record {recordID} indicates Sara was seen at {obs_lat}N and {obs_lon}W on {obs_date}")
+print (f'Record {record_id} indicates Sara was seen at {obs_lat}N, and {obs_lon}W on {obs_date}. ')
