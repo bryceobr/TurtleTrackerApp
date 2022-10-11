@@ -47,25 +47,34 @@ file_name = 'data/raw/sara.txt'
 #Create a file object from the file
 file_object = open(file=file_name,mode='r')
 
-#Read contents of file into a list
-line_list = file_object.readlines()
+#Read one line at a time in our while loop
+line_list = file_object.readline()
 
-#Close the file
-file_object.close()
-
-#Process all lines in the ARGOS file using a for loop
-lineString = line_list[100]
+#Process one data line into a variable
+while lineString:
     
-#Split the string into a list of data items
-lineData = lineString.split()
+    #Check to see if the lineString is a data line
+    if lineString[0] in ('#','u'):
+        lineString =file_object.readline()
+        continue
+        continue
+    
+    
+    #Split the string into a list of data items
+    lineData = lineString.split()
+    
+    #Extract items in list into variables
+    record_id = lineData[0]
+    obs_date = lineData[2]
+    obs_lc = lineData[4]
+    obs_lat = lineData[6]
+    obs_lon = lineData[7]
+    
+    #Print the location of sara
+    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
 
-#Extract items in list into variables
-record_id = lineData[0]
-obs_date = lineData[2]
-obs_lc = lineData[4]
-obs_lat = lineData[6]
-obs_lon = lineData[7]
-
-#Print the location of sara
-print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
-
+    #move to the next file line in the file
+    lineString = file_object.readline()
+    
+#close the file object
+file_object.close()
