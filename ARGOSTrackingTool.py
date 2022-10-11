@@ -47,18 +47,22 @@ file_name = 'data/raw/sara.txt'
 #Create a file object from the file
 file_object = open(file=file_name,mode='r')
 
-#Read one line at a time in our while loop
-line_list = file_object.readline()
+#Read contents of file into a list
+line_list = file_object.readlines()
 
-#Process one data line into a variable
-while lineString:
+#close the file object
+file_object.close() 
+
+#create dictionaries
+date_dict = {}
+location_dict = {}
+
+#Extract one data line into a variable
+for lineString in line_list:
     
-    #Check to see if the lineString is a data line
+    #check to see if the lineString is a data line
     if lineString[0] in ('#','u'):
-        lineString =file_object.readline()
         continue
-        continue
-    
     
     #Split the string into a list of data items
     lineData = lineString.split()
@@ -72,9 +76,12 @@ while lineString:
     
     #Print the location of sara
     print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
-
-    #move to the next file line in the file
-    lineString = file_object.readline()
     
-#close the file object
-file_object.close()
+    #add items to the dictionary
+    date_dict[record_id] = obs_date
+    location_dict[record_id] = (obs_lat,obs_lon)
+
+#testing script
+list(location_dict.keys())[0] 
+print (location_dict['20616'])
+print(date_dict['24719'])
