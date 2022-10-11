@@ -74,14 +74,18 @@ for lineString in line_list:
     obs_lat = lineData[6]
     obs_lon = lineData[7]
     
-    #Print the location of sara
-    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #filter records based on location classification
+    if obs_lc in ("1", "2", "3"):
     
-    #add items to the dictionary
-    date_dict[record_id] = obs_date
-    location_dict[record_id] = (obs_lat,obs_lon)
+        #Print the location of sara
+        print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+        
+        #add items to the dictionary
+        date_dict[record_id] = obs_date
+        location_dict[record_id] = (obs_lat,obs_lon)
 
 #testing script
-list(location_dict.keys())[0] 
-print (location_dict['20616'])
-print(date_dict['24719'])
+#list(location_dict.keys())[0] 
+#print (location_dict['20616'])
+#print(date_dict['24719'])
+print(len(location_dict))
