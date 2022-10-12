@@ -78,11 +78,7 @@ for lineString in line_list:
     obs_lon = lineData[7]
     
     #filter records based on location classification
-    if obs_lc in ("1", "2", "3"):
-    
-        #Print the location of sara
-        print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
-        
+    if obs_lc in ("1", "2", "3"):    
         #add items to the dictionary
         date_dict[record_id] = obs_date
         location_dict[record_id] = (obs_lat,obs_lon)
@@ -100,10 +96,12 @@ matching_keys = []
 for the_key, the_value in date_dict.items():
     #See if the date (the value) matches the user date
     if the_value == user_date:
+        #print(the key,the_value)
         matching_keys.append(the_key)
 
-#just for shits
-print(matching_keys)
+#report whether no keys were found
+if len(matching_keys) == 0:
+    print(f"Sara was not located on {user date}")
 
 #Reveal locations for each key in matching_keys
 for matching_key in matching_keys:
